@@ -1,4 +1,4 @@
-Package: spvalidation
+Package: spcv
 Title: a minimalist package for anticipating prediction errors in spatial interpolation through cross validation
 Version: 0.0.0.9000
 Authors@R: person("Koshlan", "Mayer-Blackwell", email = "kmayerb@gmail.com", role = c("aut", "cre"))
