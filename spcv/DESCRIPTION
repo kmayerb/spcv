@@ -1,0 +1,22 @@
+Package: spvalidation
+Title: a minimalist package for anticipating prediction errors in spatial interpolation through cross validation
+Version: 0.0.0.9000
+Authors@R: person("Koshlan", "Mayer-Blackwell", email = "kmayerb@gmail.com", role = c("aut", "cre"))
+Description: spvalidation considers potential errors arising from 
+the non-parametric inverse distance weighting method of interpolation, 
+as applied to specific environmental data set. 
+The package is for personal consumption, aimed at furthering my
+understanding of the environmental datasets I work with.
+More efficient implimentations of cross validation can  
+be found elsewhere.
+Depends: R (>= 3.4.3)
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: 
+  dplyr,
+  tidyr,
+  sp,
+  gstat,
+  ggplot2
+  
