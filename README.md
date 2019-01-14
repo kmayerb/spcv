@@ -34,7 +34,7 @@ spcv() will return a list object containing the following:
 
 #### Convenience functions in spcv
 
-*spcv:::convert_spdf_for_ggplot()* is a useful function for converting SpatialPointsDataFrame for plotting in ggplot
+*spcv:::convert_spdf_for_ggplot2()* is a useful function for converting SpatialPointsDataFrame for plotting in ggplot
 
 
 #### A toy example 
