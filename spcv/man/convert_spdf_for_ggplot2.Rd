@@ -11,6 +11,9 @@ convert_spdf_for_ggplot2(df.sp, var_name = "var1.pred")
 
 \item{var_name}{}
 }
+\value{
+df data.frame in long from for ggplot the var_name of interest is named z
+}
 \description{
 convert_spdf_for_ggplot2
 }

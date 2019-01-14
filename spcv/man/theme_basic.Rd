@@ -6,6 +6,9 @@
 \usage{
 theme_basic()
 }
-\description{
+\value{
 clean plot style for ggplot2
+}
+\description{
+theme_basic
 }

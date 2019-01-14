@@ -4,10 +4,8 @@
 #' @param my_idp numeric bandwidth parameter
 #' @param var_name variable name of numeric
 #'
-#' @return
+#' @return list cv.input SpatialPointsDataFrame, cv.pred vector, cv.error vector, cv.rmse numeric
 #' @export
-#'
-#' @examples
 spcv <- function(df.sp, my_idp = 2, var_name = "conc", ...){
   # check inputs are of the correct class
   input_checks = 0

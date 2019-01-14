@@ -1,7 +1,6 @@
 #' theme_basic
 #'
-#' clean plot style for ggplot2
-#' @return
+#' @return clean plot style for ggplot2
 #' @export
 #' @import ggplot2
 theme_basic <- function() {
@@ -26,5 +25,6 @@ theme_basic <- function() {
     )
 }
 
+# useful references on controling ggplot2 asthetics
 # https://ggplot2.tidyverse.org/reference/theme.html
 # https://socviz.co/refineplots.html

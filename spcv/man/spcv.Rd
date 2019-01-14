@@ -13,6 +13,9 @@ spcv(df.sp, my_idp = 2, var_name = "conc", ...)
 
 \item{var_name}{variable name of numeric}
 }
+\value{
+list cv.input SpatialPointsDataFrame, cv.pred vector, cv.error vector, cv.rmse numeric
+}
 \description{
 spcv
 }
