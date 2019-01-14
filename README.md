@@ -5,6 +5,8 @@ a minimalist package for anticipating prediction errors in spatial interpolation
 
 ### In Search of a Goldilocks Interpolator
 
+This readme can also be found as an R-markdown in spcv/proto-vignettes
+
 #### What is spcv?
 
 *spcv*, short for spatial cross validation, is a minimalist R package for anticipating prediction errors in spatially interpolated data. For now, it’s based on hold one out cross validation, and its meant to work with the R spatial statistics package gstat.
@@ -55,20 +57,76 @@ ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"),
   spcv::theme_basic() 
 ```
 
-
-
 ![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png)
 
 ![f2](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f2.png)
 
+#### Use spcv to examine interpolation errors with different bandwidth
+
+```{r, echo = T,message = F, warning = F, results='hide'}
+cv.1 <- spcv(df.sp = m.sample, my_idp = 1, var_name = "conc")
+cv.2 <- spcv(df.sp = m.sample, my_idp = 2, var_name = "conc")
+cv.4 <- spcv(df.sp = m.sample, my_idp = 4, var_name = "conc")
+cv.8 <- spcv(df.sp = m.sample, my_idp = 8, var_name = "conc")
+cv.16 <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc")
+```
+
 ![f3](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f3.png)
+
+Low bandwidth (p) values give distant points more oomph when interpolating. By contrast, increasing the bandwidth power parameter assigns greater influence to values closest to the interpolated point. For this data, the errors associated with estimates from low-bandwidth interpolation (i.e. p < 2) are similar to using the global mean as an estimator for each unknown point. Here, medium and high concentration samples are systematically under predicted.
+
+For this data, spatial cross validation illustrates how increasing the inverse distance weighting bandwidth parameter (p) reduces the magnitude of interpolation errors, but only up to a point. Which value of p is best? That probably depends on the goal of the study. For instance, for acute toxins, underpredicting high concentrations of contaminants may pose a larger risk than overestimating low concentrations from the standpoint of human or ecological health.
+
+#### Won’t you be my neighborhood?
+Rather than consider the entire dataset in each IDW estimate, interpolation can be restricted to consider only points within some local neighborhood (in *gstat*, this is specified with a max distance argument).
+
+#### spcv::spcv() can be used to observe the effect of tuning the neighborhood size.
+For this data set, spcv shows that neighborhood size and inverse distance weighting bandwidth (p) are related but not entirely redundant. Using spcv suggests that shrinking the neighborhood size appears to reduce the magnitude of interpolation errors, although diminishing returns kick in at higher bandwidth parameter values. However, there are clear reasons why we should consider local over global interpolation. In particular, using a smaller local interpolation neighborhood appears to ameliorate overprediction error for lower concentration samples.
+
+```{r neighborhood, echo = T}
+my_maxdist = 2
+cv.1.md  <- spcv(df.sp = m.sample, my_idp = 1, var_name = "conc", maxdist = my_maxdist)
+cv.2.md  <- spcv(df.sp = m.sample, my_idp = 2, var_name = "conc", maxdist = my_maxdist)
+cv.4.md  <- spcv(df.sp = m.sample, my_idp = 4, var_name = "conc", maxdist = my_maxdist)
+cv.8.md  <- spcv(df.sp = m.sample, my_idp = 8, var_name = "conc", maxdist = my_maxdist)
+cv.16.md <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc", maxdist = my_maxdist)
+```
 
 ![f4](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f4.png)
 
+### Too much of a good thing?
+
+If things closer together in geographical space tend to be more alike, it’s tempting to push the gas on bandwidth and pump the brakes on neighborhood size (i.e., shrink the neighborhood size, while allowing all points within than neighborhood to contribute more strongly to the interpolation estimate). But eventually, I would expect the size of the data set to be contrain the efficacy of this stragegy on interpolation accuracy. If we shrink the neighborhood size too much, we will be making an estimate from an extremely small sample – accuracy in an average sense may or may not suffer, but I would expect variance to be high.
+
+spcv::spcv helps us consider this trade-off and predict, for a given data set, when our an interpolation neighborhood might be too constrained.
+
+
 ![f5](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f5.png)
 
-![f6](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f6.png)
+For this data set, notice how estimates in red (made with a small neighborhood size of 1 unit) seem to reduce the overall interpolation bias but also tend to lead to some larger errors when compared to points in blue (estimated with a larger neighborhood size).
 
-![f7](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f7.png)
+#### spcv as a tuning fork
 
-![f8](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f8.png)
+Why consider only a few possible parameterizations, when spcv allows one to exploit R’s lapply function to quickly visualize cross-validation errors (i.e., a proxy for out-of-sample error) for a range of parameter values
+
+```{r tuning fork, echo = T}
+cv_range = seq(1,8, by=.25)
+cv.t <- lapply(cv_range , function(i) spcv(df.sp = m.sample, 
+                                           my_idp = i, 
+                                           var_name = "conc"))
+
+```
+
+
+```{r plotrmse, echo = T, fig.width = 3, fig.height=3, fig.align="left"}
+par(mfrow = c(1,1), mar = c(4,4,2,2))
+plot(cv_range, sapply(cv.t, function(x) x$cv.rmse), 
+     col = "black", 
+     type = "p", 
+     pch =20, 
+     ylab = "RMSE",
+     xlab = expression("P"[IDW]))
+
+```
+
+![f7](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f8.png)
