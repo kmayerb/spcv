@@ -11,7 +11,7 @@ spcv(df.sp, my_idp = 2, var_name = "conc", ...)
 
 \item{my_idp}{numeric bandwidth parameter}
 
-\item{var_name}{variable name of numeric}
+\item{var_name}{variable name of column containing numeric values (e.g., concentrations of a chemical found in samples)}
 }
 \value{
 list cv.input SpatialPointsDataFrame, cv.pred vector, cv.error vector, cv.rmse numeric

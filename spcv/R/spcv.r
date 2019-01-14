@@ -2,7 +2,7 @@
 #'
 #' @param df.sp SpatialPointsDataFrame (see sp package)  
 #' @param my_idp numeric bandwidth parameter
-#' @param var_name variable name of numeric
+#' @param var_name variable name of column containing numeric values (e.g., concentrations of a chemical found in samples)
 #'
 #' @return list cv.input SpatialPointsDataFrame, cv.pred vector, cv.error vector, cv.rmse numeric
 #' @export
