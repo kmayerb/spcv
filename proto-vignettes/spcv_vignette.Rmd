@@ -106,17 +106,22 @@ plot(cv.1$cv.input$conc, cv.1$cv.error, main = paste("p =", 1), ylim = c(ymn,ymx
      xlab = "hold-out value",
      ylab = "prediction error"); 
 abline(0,0, col = "gray")
+
 plot(cv.2$cv.input$conc, cv.2$cv.error, main = paste("p =", 2), ylim = c(ymn,ymx),
      xlab = "hold-out value",
      ylab = "prediction error"); 
 abline(0,0, col = "gray")
-plot(cv.4$cv.input$conc, cv.4$cv.error, main = paste("p =", 4), ylim = c(ymn,ymx)); abline(0,0, col = "gray",
+
+plot(cv.4$cv.input$conc, cv.4$cv.error, main = paste("p =", 4), ylim = c(ymn,ymx),    
      xlab = "hold-out value",
-     ylab = "prediction error")
+     ylab = "prediction error"); 
+abline(0,0, col = "gray")
+
 plot(cv.8$cv.input$conc, cv.8$cv.error, main = paste("p =", 8), ylim = c(ymn,ymx),
      xlab = "hold-out value",
      ylab = "prediction error"); 
 abline(0,0, col = "gray")
+
 plot(cv.16$cv.input$conc, cv.8$cv.error, main = paste("p =", 16), ylim = c(ymn,ymx),
      xlab = "hold-out value",
      ylab = "prediction error"); 
