@@ -115,16 +115,4 @@ cv.t <- lapply(cv_range , function(i) spcv(df.sp = m.sample,
 
 ```
 
-
-```{r plotrmse, echo = T, fig.width = 3, fig.height=3, fig.align="left"}
-par(mfrow = c(1,1), mar = c(4,4,2,2))
-plot(cv_range, sapply(cv.t, function(x) x$cv.rmse), 
-     col = "black", 
-     type = "p", 
-     pch =20, 
-     ylab = "RMSE",
-     xlab = expression("P"[IDW]))
-
-```
-
 ![f7](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f7.png)
