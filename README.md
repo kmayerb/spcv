@@ -57,9 +57,9 @@ ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"),
   spcv::theme_basic() 
 ```
 
-![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png)
+![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f1.png)
 
-![f2](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f2.png)
+![f2](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f2.png)
 
 #### Use spcv to examine interpolation errors with different bandwidths
 
@@ -71,7 +71,7 @@ cv.8 <- spcv(df.sp = m.sample, my_idp = 8, var_name = "conc")
 cv.16 <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc")
 ```
 
-![f3](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f3.png)
+![f3](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f3.png)
 
 Low bandwidth (p) values give distant known points more "oomph" when interpolating unknown points. By contrast, increasing the bandwidth parameter assigns greater influence to values closer to the interpolated point. For this toy data set, the errors associated with estimates from low-bandwidth interpolation (i.e. p < 2) are similar to what would be expected using the global mean as an estimator for each unknown point. Here, medium (conc >3) and high concentration samples (conc > 5) are systematically under predicted. (error is calculated her as test value minus prediction value, so postive sign errors repressent under prediction)
 
@@ -92,7 +92,7 @@ cv.8.md  <- spcv(df.sp = m.sample, my_idp = 8, var_name = "conc", maxdist = my_m
 cv.16.md <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc", maxdist = my_maxdist)
 ```
 
-![f4](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f4.png)
+![f4](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f4.png)
 
 ### Too much of a good thing?
 
@@ -101,7 +101,7 @@ If things closer together in geographical space tend to be more alike, it’s te
 spcv::spcv helps us consider this trade-off and predict, for a given data set, when our an interpolation neighborhood might be too constrained.
 
 
-![f5](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f5.png)
+![f5](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f5.png)
 
 For this data set, notice how estimates in red (made with a small neighborhood size of 1 unit) seem to reduce the overall interpolation bias but also tend to lead to some larger individual errors when compared to points in blue (estimated with a larger neighborhood size).
 
@@ -130,4 +130,4 @@ plot(cv_range, sapply(cv.t, function(x) x$cv.rmse),
 
 ```
 
-![f7](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f7.png)
+![f7](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f7.png)
