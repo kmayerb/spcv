@@ -1,14 +1,15 @@
 #' spcv
 #'
-#' @param df.sp SpatialPointsDataFrame (see sp package)  
+#' @param df.sp SpatialPointsDataFrame (see sp package)
 #' @param my_idp numeric bandwidth parameter
 #' @param var_name variable name of column containing numeric values (e.g., concentrations of a chemical found in samples)
 #'
-#' @return list containing cv.input (SpatialPointsDataFrame), 
-#' cv.pred (vector of predictions at hold out locations), 
-#' cv.error (vector of errors based on difference of test point - prediction), 
+#' @return list containing cv.input (SpatialPointsDataFrame),
+#' cv.pred (vector of predictions at hold out locations),
+#' cv.error (vector of errors based on difference of test point - prediction),
 #' cv.rmse (numeric root mean squared error based on cv.error)
 #' @export
+#' @import gstat
 spcv <- function(df.sp, my_idp = 2, var_name = "conc", ...){
   # check inputs are of the correct class
   input_checks = 0
@@ -27,7 +28,7 @@ spcv <- function(df.sp, my_idp = 2, var_name = "conc", ...){
   if (input_checks < 4){
     stop("See warning(s) and correct spatial_cross_validation input types")
   }
-  
+
   # lapply in this context creates a list of data.frames, each missing one observation,
   # which will late be exploited for applying hold-one-out cross-validation
   cv1 <- lapply ( 1:nrow(df.sp), function(i) {
@@ -38,17 +39,17 @@ spcv <- function(df.sp, my_idp = 2, var_name = "conc", ...){
     estimate = gstat::idw(as.formula(paste0(var_name, "~1")), x$cv.df, x$holdout.df, idp= my_idp, debug.level = 0, ...)
     estimate$var1.pred
   })
-  
+
   # convert list to vector format
   cv.pred = unlist(cv.predictions)
   # calculate the difference between the interpolated estimate and the hold-out test point
   cv.error = df.sp[[var_name]] - cv.pred
   # calculate the rmse - root mean squared error (function defined externally)
   cv.rmse = rmse(cv.pred,df.sp$conc )
-  
+
   return(list( cv.input   = df.sp,
                cv.pred    = cv.pred,
                cv.error   = cv.error,
                cv.rmse    = cv.rmse))
-  
+
 }
