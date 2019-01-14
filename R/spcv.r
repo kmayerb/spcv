@@ -36,7 +36,11 @@ spcv <- function(df.sp, my_idp = 2, var_name = "conc", ...){
   })
   # calculate the hold-out error by perform interpolation using all data but one hold-out
   cv.predictions <- lapply(cv1, function(x){
-    estimate = gstat::idw(as.formula(paste0(var_name, "~1")), x$cv.df, x$holdout.df, idp= my_idp, debug.level = 0, ...)
+    estimate = gstat::idw(as.formula(paste0(var_name, "~1")),
+                          x$cv.df,
+                          x$holdout.df,
+                          idp = my_idp,
+                          debug.level = 0, ...)
     estimate$var1.pred
   })
 
