@@ -105,6 +105,7 @@ spcv::spcv helps us consider this trade-off and predict, for a given data set, w
 
 For this data set, notice how estimates in red (made with a small neighborhood size of 1 unit) seem to reduce the overall interpolation bias but also tend to lead to some larger errors when compared to points in blue (estimated with a larger neighborhood size).
 
+
 #### spcv as a tuning fork
 
 Why consider only a few possible parameterizations, when spcv allows one to exploit R’s lapply function to quickly visualize cross-validation errors (i.e., a proxy for out-of-sample error) for a range of parameter values
