@@ -3,7 +3,7 @@ a minimalist R package for anticipating prediction errors in spatial interpolati
 
 ### In Search of a Goldilocks Interpolator
 
-Code for plots in this README.md canbe found as a RMarkdown document in the /proto-vignettes/ folder
+Code for plots in this README.md can be found as a RMarkdown document in the /proto-vignettes/ folder
 
 #### What is spcv?
 
@@ -93,7 +93,7 @@ cv.16.md <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc", maxdist = my_
 
 ### Too much of a good thing?
 
-If things closer together in geographical space tend to be more alike, it’s tempting to push the gas on bandwidth and pump the brakes on neighborhood size (i.e., shrink the neighborhood size, while allowing all points within than neighborhood to contribute more strongly to the interpolation estimate). But eventually, the size of the data set will pose a contraint this interpolation strategy. If we shrink the neighborhood size too much, we will be making an estimate from an extremely small sample – systematic interpolation error may or may not suffer, but I would expect this to produce highly variable interpolation errors (similare to if we had just used nearest neighbor interpolation).
+If things closer together in geographical space tend to be more alike, it’s tempting to push the gas on bandwidth and pump the brakes on neighborhood size (i.e., shrink the neighborhood size, while allowing all points within than neighborhood to contribute more strongly to the interpolation estimate). But eventually, the size of the data set will pose a constraint on this interpolation strategy. If we shrink the neighborhood size too much, we will be making an estimate from an extremely small sample – systematic interpolation error may or may not suffer, but I would expect this to produce highly variable interpolation errors (similare to if we had just used nearest neighbor interpolation).
 
 On goal of the spcv package is to helps us consider this trade-off and predict, for a given data set, when our an interpolation neighborhood becomes too constrained.
 
