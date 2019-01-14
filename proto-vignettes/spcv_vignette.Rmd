@@ -100,13 +100,23 @@ cv.16 <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc")
 ```
 
 ```{r fig3, echo = F, fig.width = 10, fig.height= 2}
-par(mfrow = c(1,5), mar = c(3,3,3,3))
+par(mfrow = c(1,5), mar = c(4,4,3,3))
 ymx  = 8; ymn = -8
-plot(cv.1$cv.input$conc, cv.1$cv.error, main = paste("p =", 1), ylim = c(ymn,ymx)); abline(0,0, col = "gray")
-plot(cv.2$cv.input$conc, cv.2$cv.error, main = paste("p =", 2), ylim = c(ymn,ymx)); abline(0,0, col = "gray")
-plot(cv.4$cv.input$conc, cv.4$cv.error, main = paste("p =", 4), ylim = c(ymn,ymx)); abline(0,0, col = "gray")
-plot(cv.8$cv.input$conc, cv.8$cv.error, main = paste("p =", 8), ylim = c(ymn,ymx)); abline(0,0, col = "gray")
-plot(cv.16$cv.input$conc, cv.8$cv.error, main = paste("p =", 16), ylim = c(ymn,ymx)); abline(0,0, col = "gray")
+plot(cv.1$cv.input$conc, cv.1$cv.error, main = paste("p =", 1), ylim = c(ymn,ymx)); abline(0,0, col = "gray",
+     xlab = "hold-out value",
+     ylab = "prediction error")
+plot(cv.2$cv.input$conc, cv.2$cv.error, main = paste("p =", 2), ylim = c(ymn,ymx)); abline(0,0, col = "gray",
+     xlab = "hold-out value",
+     ylab = "prediction error")
+plot(cv.4$cv.input$conc, cv.4$cv.error, main = paste("p =", 4), ylim = c(ymn,ymx)); abline(0,0, col = "gray",
+     xlab = "hold-out value",
+     ylab = "prediction error")
+plot(cv.8$cv.input$conc, cv.8$cv.error, main = paste("p =", 8), ylim = c(ymn,ymx)); abline(0,0, col = "gray",
+     xlab = "hold-out value",
+     ylab = "prediction error")
+plot(cv.16$cv.input$conc, cv.8$cv.error, main = paste("p =", 16), ylim = c(ymn,ymx)); abline(0,0, col = "gray",
+     xlab = "hold-out value",
+     ylab = "prediction error")
 ```
 Low bandwidth (p) values give distant points more oomph when interpolating. By contrast, increasing the bandwidth power parameter assigns greater influence to values closest to the interpolated point. For this data, the errors associated with estimates from low-bandwidth interpolation (i.e. p < 2) are similar to using the global mean as an estimator for each unknown point. Here, medium and high concentration samples are systematically under predicted.
 
@@ -130,12 +140,14 @@ cv.16.md <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc", maxdist = my_
 
 
 ```{r fig4, echo = F, fig.width = 10, fig.height= 2}
-par(mfrow = c(1,5), mar = c(3,3,3,3))
+par(mfrow = c(1,5), mar = c(4,4,3,3))
 ymx  = 8; ymn = -8
 plot(cv.1$cv.input$conc, 
      cv.1$cv.error, 
      main = paste("p =", 1, "\nmaxdist = ", my_maxdist), 
-     ylim = c(ymn,ymx))
+     ylim = c(ymn,ymx),
+     xlab = "hold-out value",
+     ylab = "prediction error")
 abline(0,0, col = "gray")
 points(cv.1.md$cv.input$conc, 
        cv.1.md$cv.error, 
@@ -144,7 +156,9 @@ points(cv.1.md$cv.input$conc,
 plot(cv.2$cv.input$conc, 
      cv.2$cv.error, 
      main = paste("p =", 2, "\nmaxdist = ", my_maxdist),  
-     ylim = c(ymn,ymx)); 
+     ylim = c(ymn,ymx),
+     xlab = "hold-out value",
+     ylab = "prediction error"); 
 abline(0,0, col = "gray")
 points(cv.2.md$cv.input$conc, 
        cv.2.md$cv.error,
@@ -153,7 +167,9 @@ points(cv.2.md$cv.input$conc,
 plot(cv.4$cv.input$conc, 
      cv.4$cv.error, 
      main = paste("p =", 4, "\nmaxdist = ", my_maxdist), 
-     ylim = c(ymn,ymx)); 
+     ylim = c(ymn,ymx),
+     xlab = "hold-out value",
+     ylab = "prediction error"); 
 abline(0,0, col = "gray")
 points(cv.4.md$cv.input$conc, 
        cv.4.md$cv.error, 
@@ -162,7 +178,9 @@ points(cv.4.md$cv.input$conc,
 plot(cv.8$cv.input$conc, 
      cv.8$cv.error,
      main = paste("p =", 8, "\nmaxdist = ", my_maxdist),  
-     ylim = c(ymn,ymx)); 
+     ylim = c(ymn,ymx),
+     xlab = "hold-out value",
+     ylab = "prediction error"); 
 abline(0,0, col = "gray")
 points(cv.8.md$cv.input$conc, 
        cv.8.md$cv.error, 
@@ -171,7 +189,9 @@ points(cv.8.md$cv.input$conc,
 plot(cv.16$cv.input$conc, 
      cv.8$cv.error, 
      main = paste("p =", 16, "\nmaxdist = ", my_maxdist),  
-     ylim = c(ymn,ymx)); abline(0,0, col = "gray")
+     ylim = c(ymn,ymx),
+     xlab = "hold-out value",
+     ylab = "prediction error"); abline(0,0, col = "gray")
 points(cv.16.md$cv.input$conc, 
        cv.16.md$cv.error, 
        col = "#0000FF50")
@@ -196,12 +216,14 @@ cv.16.md1 <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc", maxdist = my
 
 
 ```{r fig5, echo = F, warnings = F, message = F, fig.width = 9, fig.height= 3, results='hide'}
-par(mfrow = c(1,3), mar = c(3,3,3,3))
+par(mfrow = c(1,3), mar = c(4,4,3,3))
 ymx  = 8; ymn = -8
 plot(cv.1$cv.input$conc, 
      cv.1$cv.error, 
      main = paste("p =", 1, "\nmaxdist = ", my_maxdist), 
-     ylim = c(ymn,ymx))
+     ylim = c(ymn,ymx),
+     xlab = "hold-out value",
+     ylab = "prediction error")
 abline(0,0, col = "gray")
 points(cv.1.md$cv.input$conc, 
        cv.1.md$cv.error, 
@@ -213,7 +235,9 @@ points(cv.1.md1$cv.input$conc,
 plot(cv.2$cv.input$conc, 
      cv.2$cv.error, 
      main = paste("p =", 2, "\nmaxdist = ", my_maxdist),  
-     ylim = c(ymn,ymx)); 
+     ylim = c(ymn,ymx),
+     xlab = "hold-out value",
+     ylab = "prediction error"); 
 abline(0,0, col = "gray")
 points(cv.2.md$cv.input$conc, 
        cv.2.md$cv.error, 
@@ -230,7 +254,9 @@ suppressWarnings(arrows(cv.2.md$cv.input$conc,
 plot(cv.4$cv.input$conc, 
      cv.4$cv.error, 
      main = paste("p =", 4, "\nmaxdist = ", my_maxdist), 
-     ylim = c(ymn,ymx)); 
+     ylim = c(ymn,ymx),
+     xlab = "hold-out value",
+     ylab = "prediction error"); 
 abline(0,0, col = "gray")
 points(cv.4.md$cv.input$conc, 
        cv.4.md$cv.error, 
