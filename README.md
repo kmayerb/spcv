@@ -55,4 +55,18 @@ ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"),
   spcv::theme_basic() 
 ```
 
-![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png)
+![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =250x250)
+
+![f2](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =1000x250)
+
+![f3](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =1000x250)
+
+![f4](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =1000x200)
+
+![f5](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =1000x200)
+
+![f6](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =1000x333)
+
+![f7](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =250x250)
+
+![f8](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =750x250)
