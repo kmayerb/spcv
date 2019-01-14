@@ -56,6 +56,7 @@ ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"),
 ```
 
 
+
 ![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =250x250)
 
 ![f2](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =1000x250)
@@ -69,5 +70,6 @@ ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"),
 ![f6](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =1000x333)
 
 ![f7](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =250x250)
+
 
 ![f8](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png =750x250)
