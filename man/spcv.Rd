@@ -14,9 +14,9 @@ spcv(df.sp, my_idp = 2, var_name = "conc", ...)
 \item{var_name}{variable name of column containing numeric values (e.g., concentrations of a chemical found in samples)}
 }
 \value{
-list containing cv.input (SpatialPointsDataFrame), 
-cv.pred (vector of predictions at hold out locations), 
-cv.error (vector of errors based on difference of test point - prediction), 
+list containing cv.input (SpatialPointsDataFrame),
+cv.pred (vector of predictions at hold out locations),
+cv.error (vector of errors based on difference of test point - prediction),
 cv.rmse (numeric root mean squared error based on cv.error)
 }
 \description{
