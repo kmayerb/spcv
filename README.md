@@ -54,3 +54,5 @@ ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"),
   geom_point() + 
   spcv::theme_basic() 
 ```
+
+![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/spcv/img/f1.png)
