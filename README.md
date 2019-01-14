@@ -41,3 +41,16 @@ It will return a list object containing the following:
 #### A toy example 
 
 Consider **m.sample**, a SpatialPointsDataFrame object consisting of 100 points in {x,y} coordinate space, containing chemical results at various concentrations (“conc”). It is easily plot using spcv::convert_spdf_for_ggplot2() (also see spcv::theme_basic() for reproducing the aesthetic below).
+
+
+```{r load_example}
+m.sample <- readRDS( "../data-raw/spdf_sample1.rds")
+head(m.sample,3)
+```
+
+```{r, echo = T, fig.height= 3,fig.width = 3, fig.align= "left"}
+ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"), 
+       aes(x,y, col =z)) + 
+  geom_point() + 
+  spcv::theme_basic() 
+```
