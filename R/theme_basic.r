@@ -1,6 +1,10 @@
 #' theme_basic
 #'
-#' @return clean plot style for ggplot2
+#' a ggplot2 theme with minimal contextual ink, for plotting spatial data with geom_points()
+#' or geom_tile(). Ticks, axes labels, and legend title are omitted.
+#'
+#'
+#' @return a ggplot2 theme object to produce a clean plot style in ggplot2 for maps
 #' @export
 #' @import ggplot2
 theme_basic <- function() {
@@ -20,11 +24,6 @@ theme_basic <- function() {
       legend.position	= "bottom",
       legend.direction = "horizontal",
       legend.justification = "center",
-      #legend.box.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "pt"),
       legend.box.spacing = unit(0, "cm")
     )
 }
-
-# useful references on controling ggplot2 asthetics
-# https://ggplot2.tidyverse.org/reference/theme.html
-# https://socviz.co/refineplots.html

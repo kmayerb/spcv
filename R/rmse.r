@@ -1,17 +1,16 @@
-# root mean squared erorr
 #' rmse
 #'
-#' a simple root mean squared error calculator
+#' calculate root mean squared error from two vectors
 #'
-#' @param observations vector of numeric values (NAs will be ignored)
-#' @param predictions  vector of numeric values (NAs will be ignored)
+#' @param observations a vector object of numeric values (NAs will be ignored)
+#' @param predictions  a vector object of numeric values (NAs will be ignored)
 #'
-#' @return the root mean squared error of two vectors
+#' @return the root mean squared error for the two vectors
 #' @export
 rmse <- function(observations, predictions){
   if(! (is.numeric(observations) & is.numeric(predictions)) ){
     stop("The observations and preduction inputs must be numeric vectors.")
-  } 
+  }
   if(length(observations) != length(predictions)){
     stop("The observations and predictions vectors must be of equal length.")
   }

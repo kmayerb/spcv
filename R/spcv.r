@@ -1,13 +1,16 @@
 #' spcv
 #'
-#' @param df.sp SpatialPointsDataFrame (see sp package)
-#' @param my_idp numeric bandwidth parameter
-#' @param var_name variable name of column containing numeric values (e.g., concentrations of a chemical found in samples)
+#' @param df.sp a SpatialPointsDataFrame object See the sp package for how to create one.
+#' @param my_idp a numeric object, specifying the inverse distance weighting bandwidth parameter
+#' @param var_name a string object, specifying the variable name
+#' for the data frame column containing numeric values to be interpolated.
+#' For example, concentrations of a chemical found in spatial samples.
 #'
-#' @return list containing cv.input (SpatialPointsDataFrame),
-#' cv.pred (vector of predictions at hold out locations),
-#' cv.error (vector of errors based on difference of test point - prediction),
-#' cv.rmse (numeric root mean squared error based on cv.error)
+#' @return list containing four objects: cv.input (SpatialPointsDataFrame),
+#' cv.pred (vector of predictions at the hold out locations),
+#' cv.error (vector of errors based on difference of hold out test points and interpolated prediction),
+#' cv.rmse (numeric root mean squared error, which is vased on cv.error vector)
+#'
 #' @export
 #' @import gstat
 spcv <- function(df.sp, my_idp = 2, var_name = "conc", ...){
@@ -49,7 +52,7 @@ spcv <- function(df.sp, my_idp = 2, var_name = "conc", ...){
   # calculate the difference between the interpolated estimate and the hold-out test point
   cv.error = df.sp[[var_name]] - cv.pred
   # calculate the rmse - root mean squared error (function defined externally)
-  cv.rmse = rmse(cv.pred,df.sp$conc )
+  cv.rmse = spcv::rmse(cv.pred,df.sp$conc )
 
   return(list( cv.input   = df.sp,
                cv.pred    = cv.pred,
