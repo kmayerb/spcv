@@ -10,8 +10,9 @@
 #' defined as z in the ggplot ready output data.frame
 #'
 #' @return df a data.frame object in long from for compatability with ggplot2; the var_name of interest is renamed z
+#' @import sp
 #' @export
 convert_spdf_for_ggplot2 <- function(df.sp, var_name = "var1.pred") {
-  df = as.data.frame(cbind(coordinates(df.sp), z = df.sp[[var_name]]))
+  df = as.data.frame(cbind(sp::coordinates(df.sp), z = df.sp[[var_name]]))
   return(df)
 }

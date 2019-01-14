@@ -43,7 +43,8 @@ Consider **m.sample**, a SpatialPointsDataFrame object consisting of 100 points 
 
 
 ```{r load_example}
-m.sample <- readRDS( "../data-raw/spdf_sample1.rds")
+devtools::load_all()
+m.sample <- m3_sample 
 head(m.sample,3)
 ```
 
