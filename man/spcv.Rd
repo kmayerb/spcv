@@ -7,17 +7,19 @@
 spcv(df.sp, my_idp = 2, var_name = "conc", ...)
 }
 \arguments{
-\item{df.sp}{SpatialPointsDataFrame (see sp package)}
+\item{df.sp}{a SpatialPointsDataFrame object See the sp package for how to create one.}
 
-\item{my_idp}{numeric bandwidth parameter}
+\item{my_idp}{a numeric object, specifying the inverse distance weighting bandwidth parameter}
 
-\item{var_name}{variable name of column containing numeric values (e.g., concentrations of a chemical found in samples)}
+\item{var_name}{a string object, specifying the variable name
+for the data frame column containing numeric values to be interpolated.
+For example, concentrations of a chemical found in spatial samples.}
 }
 \value{
-list containing cv.input (SpatialPointsDataFrame),
-cv.pred (vector of predictions at hold out locations),
-cv.error (vector of errors based on difference of test point - prediction),
-cv.rmse (numeric root mean squared error based on cv.error)
+list containing four objects: cv.input (SpatialPointsDataFrame),
+cv.pred (vector of predictions at the hold out locations),
+cv.error (vector of errors based on difference of hold out test points and interpolated prediction),
+cv.rmse (numeric root mean squared error, which is vased on cv.error vector)
 }
 \description{
 spcv

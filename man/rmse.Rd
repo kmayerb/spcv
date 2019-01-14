@@ -7,13 +7,13 @@
 rmse(observations, predictions)
 }
 \arguments{
-\item{observations}{vector of numeric values (NAs will be ignored)}
+\item{observations}{a vector object of numeric values (NAs will be ignored)}
 
-\item{predictions}{vector of numeric values (NAs will be ignored)}
+\item{predictions}{a vector object of numeric values (NAs will be ignored)}
 }
 \value{
-the root mean squared error of two vectors
+the root mean squared error for the two vectors
 }
 \description{
-a simple root mean squared error calculator
+calculate root mean squared error from two vectors
 }

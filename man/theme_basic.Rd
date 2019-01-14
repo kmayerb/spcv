@@ -7,8 +7,9 @@
 theme_basic()
 }
 \value{
-clean plot style for ggplot2
+a ggplot2 theme object to produce a clean plot style in ggplot2 for maps
 }
 \description{
-theme_basic
+a ggplot2 theme with minimal contextual ink, for plotting spatial data with geom_points()
+or geom_tile(). Ticks, axes labels, and legend title are omitted.
 }
