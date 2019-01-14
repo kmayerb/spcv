@@ -59,7 +59,7 @@ It will return a list object containing the following:
 Consider **m.sample**, a SpatialPointsDataFrame object consisting of 100 points in {x,y} coordinate space, containing chemical results at various concentrations (“conc”). It is easily plot using spcv::convert_spdf_for_ggplot2() (also see spcv::theme_basic() for reproducing the aesthetic below).
 
 ```{r load_example}
-m.sample <- readRDS( "../data-raw/spdf_sample1.rds")
+m.sample = m3_sample #m3_sample is part of spcv
 head(m.sample,3)
 ```
 
