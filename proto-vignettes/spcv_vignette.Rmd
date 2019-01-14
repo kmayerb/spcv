@@ -322,7 +322,8 @@ plot(cv_range,
      sapply(cv.t, function(x) median(x$cv.error, na.rm = T)),
      ylim = c(-4,4),
      type = "l", 
-     ylab = "Median Prediction Error\n90% Prediction Interval")
+     ylab = "Median Prediction Error\n90% Prediction Interval",
+     xlab = expression("P"[IDW]))
 points(cv_range, sapply(cv.t, function(x) median(x$cv.error, na.rm = T)), col = "black", type = "p", pch =20)
 points(cv_range, sapply(cv.t, function(x) quantile(x$cv.error, .95, na.rm = T)), col = "gray", type = "l")
 points(cv_range, sapply(cv.t, function(x) quantile(x$cv.error, .05, na.rm = T)), col = "gray", type = "l")
