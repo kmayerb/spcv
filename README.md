@@ -56,9 +56,9 @@ ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"),
 ```
 
 ![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f1.png)
+""
 
-
-#### Concentrations in the study area estimated using IDW with different bandwidths
+#### Concentrations in the study area estimated using IDW with different "bandwidths"
 ![f2](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f2.png)
 
 #### Use spcv() to examine interpolation errors with different bandwidths
@@ -73,15 +73,16 @@ cv.16 <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc")
 
 ![f3](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f3.png)
 
-Low bandwidth (p) lends distant known points more "oomph" when interpolating unknown points. By contrast, increasing the bandwidth parameter assigns greater influence to values closer to the interpolated point. For this toy data set, the errors associated with the low-bandwidth interpolation estimate (i.e. p < 2) are similar to what would be expected using the global mean as an estimator for each unknown point. Here, medium (conc >3) and high concentration (conc > 5) samples are systematically under predicted. (error is calculated her as test value minus prediction value, so here positive sign errors repressent under prediction)
+Low bandwidth (p) lends distant known points more "oomph" when interpolating unknown points. By contrast, increasing the bandwidth parameter assigns greater influence to values closer to the interpolated point. For this toy data set, the errors associated with the low-bandwidth interpolation estimate (i.e. p < 2) are similar to what would be expected using the global mean as an estimator for each unknown point. Here, medium (conc >3) and high concentration (conc > 5) samples are systematically under predicted. (error is calculated here as test value minus prediction value, so here positive sign errors repressent under prediction)
 
 For this data, spatial cross validation illustrates how increasing the inverse distance weighting bandwidth parameter (p) reduces the magnitude of interpolation errors, but only up to a point. Which value of p is best? That probably depends on the goal of the study. For instance, for acute environmental toxins, underpredicting high concentrations may pose a larger risk than overestimating low concentrations from the standpoint of human or ecological health. 
 
 #### Won’t you be my neighborhood?
 Rather than consider the entire dataset in each IDW estimate, interpolation can be restricted to consider only points within some local neighborhood (in *gstat*, this is specified with the max distance (maxdist) argument).
 
-#### spcv::spcv() can be used to observe the effect of tuning the neighborhood size.
-For this data set, spcv analysis shows that neighborhood size and inverse distance weighting bandwidth (p) are related but not entirely redundant "control knobs." Visualizing the output of spcv suggests that shrinking the neighborhood size appears to reduce the magnitude of interpolation errors for this data set, although diminishing returns kick in if higher bandwidth parameter values are selected. Nevertheless, there are clear reasons why we should consider lusing ocal over global interpolation. In particular, using a smaller local interpolation neighborhood appears to ameliorate overprediction error for lower concentration samples.
+#### spcv::spcv() can be used to observe the effect of tuning the neighborhood extent
+
+For this data set, spcv analysis shows that neighborhood extent and inverse distance weighting bandwidth (p) are related but not entirely redundant "control knobs." Visualizing the output of spcv suggests that shrinking the neighborhood extent appears to reduce the magnitude of interpolation errors for this data set, although diminishing returns kick in if higher bandwidth parameter values are selected. Nevertheless, there are clear reasons why we should consider lusing ocal over global interpolation. In particular, using a smaller local interpolation neighborhood appears to ameliorate overprediction error for lower concentration samples.
 
 ```{r neighborhood, echo = T}
 my_maxdist = 2
