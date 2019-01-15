@@ -99,7 +99,7 @@ cv.16.md <- spcv(df.sp = m.sample, my_idp = 16, var_name = "conc", maxdist = my_
 
 If things closer together in geographical space tend to be more alike, it’s tempting to push the gas on bandwidth and pump the brakes on neighborhood size (i.e., shrink the neighborhood size, while allowing all points within than neighborhood to contribute more strongly to the interpolation estimate). But eventually, the size of the data set will pose a constraint on this interpolation strategy. If we shrink the neighborhood size too much, we will be making an estimate from an extremely small sample – systematic interpolation error may or may not suffer, but I would expect this to produce highly variable interpolation errors (similare to if we had just used nearest neighbor interpolation).
 
-On goal of the spcv package is to helps us consider this trade-off and predict, for a given data set, when our an interpolation neighborhood becomes too constrained.
+One goal of the spcv package is to helps us consider this trade-off and predict, for a given data set, when our an interpolation neighborhood becomes too constrained.
 
 
 ![f5](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f5.png)
@@ -109,7 +109,7 @@ For this data set, notice how estimates in red (made with a small neighborhood s
 
 #### spcv as a tuning fork
 
-To allow use to consider many possible parameterizations, spcv allows one to exploit R’s lapply function to quickly visualize cross-validation errors (i.e., a proxy for out-of-sample error) for a range of parameter values
+To consider many possible parameterizations, spcv allows one to exploit R’s lapply function to quickly visualize cross-validation errors (i.e., a proxy for out-of-sample error) for a range of parameter values
 
 ```{r tuning fork, echo = T}
 cv_range = seq(1,8, by=.25)
