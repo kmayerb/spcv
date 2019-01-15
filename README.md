@@ -57,6 +57,8 @@ ggplot(spcv::convert_spdf_for_ggplot2(m.sample, "conc"),
 
 ![f1](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f1.png)
 
+
+#### Concentrations in the study area estimated using IDW with different bandwidths
 ![f2](https://raw.githubusercontent.com/kmayerb/spcv/master/img/f2.png)
 
 #### Use spcv() to examine interpolation errors with different bandwidths
